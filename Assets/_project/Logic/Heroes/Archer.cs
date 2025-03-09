@@ -9,6 +9,6 @@ public class Archer : Heroes ,IDebufable
     public void DoDebuff(Heroes hero,float duration)
     {
         hero.TakeDebuffPoisen(poisenDamage, poisenDuration);
-        Debug.Log($"Примене эффект Poisen на {hero.GetType().Name}");
+        Debug.Log($"Применен эффект Poisen на {hero.GetType().Name}");
     }
 }

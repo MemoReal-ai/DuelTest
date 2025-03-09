@@ -76,7 +76,11 @@ namespace _project.Logic.Heroes
             }
         }
 
-       
+        private void OnDestroy()
+        {
+            gameObject.SetActive(false);
+        }
+
 
         public virtual void TakeDamage(int enemyDamage)
         {
