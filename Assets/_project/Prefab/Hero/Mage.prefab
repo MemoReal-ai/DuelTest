@@ -148,12 +148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  attackCooldawn: 1
+  attackCooldawn: 25.4
   rangeAttack: 1.9
-  maxHealth: 100
+  maxHealth: 1
   <Damage>k__BackingField: 5.3
-  duretionDebaff: 1
-  _lastTimeAttacked: 0
+  durationDebaff: 1
   weakCountPersent: 1
   weakDuration: 7
 --- !u!1001 &1849937662848440500

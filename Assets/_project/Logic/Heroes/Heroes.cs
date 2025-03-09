@@ -45,10 +45,12 @@ namespace _project.Logic.Heroes
         protected virtual void Start()
         {
             _debuf=GetComponent<IDebufable>();
+            
             if (_debuf == null)
             {
                 throw new Exception("Heroes has not been initialized");
             }
+            
             _currentHealth = maxHealth;
             InvokeOnHealthChanged();
           
@@ -76,10 +78,7 @@ namespace _project.Logic.Heroes
             }
         }
 
-        private void OnDestroy()
-        {
-            gameObject.SetActive(false);
-        }
+
 
 
         public virtual void TakeDamage(int enemyDamage)

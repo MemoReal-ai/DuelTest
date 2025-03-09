@@ -10,7 +10,7 @@ public class WinPanel : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     [SerializeField] private Spawner spawner;
     
-    private void Start()
+    private void Awake()
     {
         winPanel.SetActive(false);
         foreach (var hero in spawner.ConteinerHeroes)
