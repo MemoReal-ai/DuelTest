@@ -170,7 +170,7 @@ namespace _project.Logic.Heroes
                     yield break;
                 
                 timer+=Time.deltaTime;
-                if (_target != null) ;
+                if (_target != null)
                 {
                     _target.TakeDamage((int)statsAffect);
                     Debug.Log($"Deal poisen {statsAffect}");

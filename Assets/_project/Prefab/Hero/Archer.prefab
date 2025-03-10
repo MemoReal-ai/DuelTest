@@ -150,7 +150,7 @@ MonoBehaviour:
   speed: 4
   attackCooldawn: 1
   rangeAttack: 5
-  maxHealth: 1
+  maxHealth: 33
   <Damage>k__BackingField: 5
   durationDebaff: 1
   poisenDamage: 1

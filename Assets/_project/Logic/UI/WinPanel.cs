@@ -15,18 +15,19 @@ public class WinPanel : MonoBehaviour
         winPanel.SetActive(false);
         foreach (var hero in spawner.ConteinerHeroes)
         {
-            hero.OnWin += ShowWniName;
+            hero.OnWin += ShowWinName;
+          
         }
     }
 
     private void OnDestroy()
     { foreach (var hero in spawner.ConteinerHeroes)
         {
-            hero.OnWin -= ShowWniName;
+            hero.OnWin -= ShowWinName;
         }   
     }
 
-    private void ShowWniName(Heroes hero)
+    private void ShowWinName(Heroes hero)
     {  
         winPanel.SetActive(true);
         text.text = hero.GetType().Name+"\n winning";

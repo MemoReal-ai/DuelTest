@@ -9,7 +9,7 @@ public class HpBar : MonoBehaviour
   [SerializeField] private Heroes hero;
   [SerializeField] private Image hpBar;
 
-  private void Start()
+  private void Awake()
   {
     hero.OnHealthChanged += UpdateHealth;
   }
