@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 
 namespace Game.Logic.Heroes
@@ -14,16 +15,16 @@ namespace Game.Logic.Heroes
         public event Action OnDamageChanged;
         
         [Header("Heroes stats"),SerializeField,Range(1, 100)]
-        private int speed = 1; 
+        private int _speed = 1; 
         [SerializeField,Range(1, 100)]
         private float _attackCooldown = 1f;
         [SerializeField,Range(1, 100)]
         private float rangeAttack = 1f;
         [SerializeField,Range(1, 15)]
-        private float durationDebaff;
+        private float _durationDebaff;
         
         [SerializeField,Range(1, 100)]
-        protected int maxHealth;
+        protected int _maxHealth;
        
         private NavMeshAgent _agent;
         private float _currentHealth;
@@ -43,13 +44,13 @@ namespace Game.Logic.Heroes
 
             if (_debuffable == null) throw new Exception("Heroes has not been initialized");
 
-            _currentHealth = maxHealth;
+            _currentHealth = _maxHealth;
             InvokeOnHealthChanged();
 
             _lastTimeAttacked = _attackCooldown;
 
             _agent = GetComponent<NavMeshAgent>();
-            _agent.speed = speed;
+            _agent.speed = _speed;
 
             InvokeOnDamageChanged();
         }
@@ -65,21 +66,18 @@ namespace Game.Logic.Heroes
             _agent.SetDestination(_target.transform.position);
             Attack();
         }
-
-  
-
+        
         public void InitTarget(Heroes target)
         {
             _target = target;
         }
-
-
+        
         public void TakeDamage(int enemyDamage)
         {
             if (enemyDamage < 0)
                 throw new Exception("You cannot take damage less than 0");
 
-            _currentHealth = Mathf.Clamp(_currentHealth - enemyDamage, 0, maxHealth);
+            _currentHealth = Mathf.Clamp(_currentHealth - enemyDamage, 0, _maxHealth);
             InvokeOnHealthChanged();
 
             if (_currentHealth == 0)
@@ -118,14 +116,14 @@ namespace Game.Logic.Heroes
                 _lastTimeAttacked <= 0)
             {
                 _target.TakeDamage((int)Damage);
-                _debuffable.DoDebuff(_target, durationDebaff);
+                _debuffable.DoDebuff(_target, _durationDebaff);
                 _lastTimeAttacked = _attackCooldown;
             }
         }
 
         private void InvokeOnHealthChanged()
         {
-            OnHealthChanged?.Invoke(_currentHealth / maxHealth);
+            OnHealthChanged?.Invoke(_currentHealth / _maxHealth);
         }
 
         private void InvokeOnWin()
