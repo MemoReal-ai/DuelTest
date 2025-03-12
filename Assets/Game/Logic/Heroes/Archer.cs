@@ -12,7 +12,7 @@ namespace Game.Logic.Heroes
         {
             _poisonDuration = duration ;
             hero.TakeDebuffPoisen(_poisonDamage, _poisonDuration);
-            Debug.Log($"Применен эффект Poisen на {hero.GetType().Name}");
+            Debug.Log($"Применен эффект Poison на {hero.GetType().Name}");
         }
     }
 }
