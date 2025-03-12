@@ -850,14 +850,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d11e555d7c58fe45994adad8bfbe39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroes:
+  _heroes:
   - {fileID: 2085256791278370500, guid: 35acdb3ad21d97e4fa7a251b79d86c47, type: 3}
   - {fileID: 2429446892346999252, guid: e52dba140d2690a46b4f22b087a94238, type: 3}
   - {fileID: 1538644512035911961, guid: 4c0d8a9b9a057e04cb7187ea55f0526e, type: 3}
-  spawnPoints:
+  _spawnPoints:
   - {fileID: 1018538624}
   - {fileID: 1796100190}
-  countHeroes: 2
+  _countHeroes: 2
 --- !u!4 &619820684
 Transform:
   m_ObjectHideFlags: 0
@@ -1382,7 +1382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fc3ee8346c30243b2f23bdcf73ceee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 71588534}
+  _button: {fileID: 71588534}
 --- !u!114 &1655890044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1395,9 +1395,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e20bd591cfc2ff4f88332722aabb37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 513456005}
-  winPanel: {fileID: 251149342}
-  spawner: {fileID: 619820683}
+  _text: {fileID: 513456005}
+  _winPanel: {fileID: 251149342}
+  _spawner: {fileID: 619820683}
 --- !u!1 &1796100189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,37 +1565,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809730526}
   m_CullTransparentMesh: 1
---- !u!1 &2095508034
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2095508035}
-  m_Layer: 0
-  m_Name: SpawnerHeroes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2095508035
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095508034}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1605,7 +1574,6 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1115460198}
-  - {fileID: 2095508035}
   - {fileID: 1541715626}
   - {fileID: 1655890042}
   - {fileID: 1171604505}
