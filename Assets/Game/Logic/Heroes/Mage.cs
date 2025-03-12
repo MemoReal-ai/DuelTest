@@ -6,7 +6,7 @@ namespace Game.Logic.Heroes
     public class Mage : Heroes, IDebuffable
     {
         [SerializeField,Range(0, 1)] 
-        private int _weakCountPersent = 1;
+        private float _weakCountPersent = 1;
         
         private float _weakDuration;
 

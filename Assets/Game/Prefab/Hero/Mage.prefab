@@ -147,14 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ed19e958c841e8ae8f3161e4c7cbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  attackCooldawn: 3.9
+  _speed: 8
+  _attackCooldown: 1
   rangeAttack: 3.9
-  maxHealth: 30
+  _durationDebaff: 1
+  _maxHealth: 54
   <Damage>k__BackingField: 5.3
-  durationDebaff: 1
-  _weakCountPersent: 1
-  _weakDuration: 10
+  _weakCountPersent: 0.5
 --- !u!1001 &1849937662848440500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171,6 +170,30 @@ PrefabInstance:
       propertyPath: _hero
       value: 
       objectReference: {fileID: 1538644512035911961}
+    - target: {fileID: 6205849787227962204, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
+      propertyPath: m_fontSize
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205849787227962204, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
+      propertyPath: m_margin.w
+      value: -0.25840616
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205849787227962204, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
+      propertyPath: m_margin.z
+      value: -0.7436551
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205849787227962204, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205849787227962204, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205849787227962204, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6394333642904344132, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

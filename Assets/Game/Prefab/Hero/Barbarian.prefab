@@ -147,14 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156cbd43fc5b4b75a6e8834fed529421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  attackCooldawn: 1.7
-  rangeAttack: 15.3
-  maxHealth: 21
-  <Damage>k__BackingField: 5
-  durationDebaff: 1
+  _speed: 11
+  _attackCooldown: 1
+  rangeAttack: 4.6
+  _durationDebaff: 1
+  _maxHealth: 27
+  <Damage>k__BackingField: 7.5
   _bushChance: 0.5
-  _bushDuration: 4
 --- !u!1001 &6245524934315589108
 PrefabInstance:
   m_ObjectHideFlags: 0
