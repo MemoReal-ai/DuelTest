@@ -52,6 +52,7 @@ namespace Game.Logic.Heroes
 
             _damageDefault = Damage;
             _attackCooldownDefault = _attackCooldown;
+            
             _agent = GetComponent<NavMeshAgent>();
             _agent.speed = _speed;
         }
@@ -110,11 +111,9 @@ namespace Game.Logic.Heroes
 
         public void RestoreAttackCooldawn()
         {
-            
+            _attackCooldown = _attackCooldownDefault;
         }
-
-
-
+        
         private IEnumerator Attack()
         {
             _isAttacking = true;
