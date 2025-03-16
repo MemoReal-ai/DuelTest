@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7618453722336289917}
   - component: {fileID: 107524575407871254}
   - component: {fileID: 2429446892346999252}
+  - component: {fileID: -1784058467461933441}
   m_Layer: 0
   m_Name: Barbarian
   m_TagString: Untagged
@@ -148,12 +149,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 11
-  _attackCooldown: 1
-  rangeAttack: 4.6
+  _attackCooldown: 2
+  _rangeAttack: 2
   _durationDebaff: 1
   _maxHealth: 27
-  <Damage>k__BackingField: 7.5
+  <Damage>k__BackingField: 7
   _bushChance: 0.5
+--- !u!114 &-1784058467461933441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9221316362931714189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8387ecc3d293834096283d8e33aa44c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hero: {fileID: 2429446892346999252}
+  _statsHeroView: {fileID: 45090982936046138}
 --- !u!1001 &6245524934315589108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,14 +177,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5108004611318611723}
     m_Modifications:
-    - target: {fileID: 738056096400556707, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
-      propertyPath: hero
-      value: 
-      objectReference: {fileID: 2429446892346999252}
-    - target: {fileID: 738056096400556707, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
-      propertyPath: _hero
-      value: 
-      objectReference: {fileID: 2429446892346999252}
     - target: {fileID: 6394333642904344132, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -250,23 +257,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8080541071064271206, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8558248394861583477, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
       propertyPath: m_Name
       value: StatsUICanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8922959870266010945, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
-      propertyPath: hero
-      value: 
-      objectReference: {fileID: 2429446892346999252}
-    - target: {fileID: 8922959870266010945, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
-      propertyPath: _hero
-      value: 
-      objectReference: {fileID: 2429446892346999252}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
+--- !u!114 &45090982936046138 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6200539509470287822, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
+  m_PrefabInstance: {fileID: 6245524934315589108}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0ada419b25eb6459094106d856809e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1013788511764818864 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6394333642904344132, guid: cde4d98caa4470541816dc25be6936eb, type: 3}

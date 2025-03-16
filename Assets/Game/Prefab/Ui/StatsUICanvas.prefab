@@ -436,8 +436,7 @@ GameObject:
   - component: {fileID: 6233600432948018321}
   - component: {fileID: 8957507670013743534}
   - component: {fileID: 5179650050646152655}
-  - component: {fileID: 738056096400556707}
-  - component: {fileID: 8922959870266010945}
+  - component: {fileID: 6200539509470287822}
   m_Layer: 5
   m_Name: StatsUICanvas
   m_TagString: Untagged
@@ -529,7 +528,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &738056096400556707
+--- !u!114 &6200539509470287822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -538,22 +537,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8558248394861583477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2cd4d91b7ba214f98ac62bd0adca70, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b0ada419b25eb6459094106d856809e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hero: {fileID: 0}
-  _hpBar: {fileID: 8080541071064271206}
---- !u!114 &8922959870266010945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8558248394861583477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73c4f24a76feb534ab0a60d116361be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hero: {fileID: 0}
   _text: {fileID: 6205849787227962204}
+  _hpBar: {fileID: 8080541071064271206}

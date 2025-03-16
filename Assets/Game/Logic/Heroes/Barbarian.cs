@@ -3,16 +3,16 @@ using Random = UnityEngine.Random;
 
 namespace Game.Logic.Heroes
 {
-    public class Barbarian : Heroes, IDebuffable
+    public class Barbarian : Hero, IDebuffable
     {
-        [Header("BarbarianStats"),SerializeField,Range(0, 1)]
+        [Header("BarbarianStats"), SerializeField, Range(0, 1)]
         private float _bushChance = 0.5f;
 
         private float _bushDuration;
-        
-        public void DoDebuff(Heroes hero, float duration)
+
+        public void DoDebuff(Hero hero, float duration)
         {
-             _bushDuration=duration;
+            _bushDuration = duration;
             var bush = Random.value;
             if (_bushChance > bush)
             {

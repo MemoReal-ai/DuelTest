@@ -2,83 +2,84 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
-
 
 namespace Game.Logic.Heroes
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public abstract class Heroes : MonoBehaviour
+    public abstract class Hero : MonoBehaviour
     {
         public event Action<float> OnHealthChanged;
-        public event Action<Heroes> OnWin;
+        public event Action<Hero> OnWin;
         public event Action OnDamageChanged;
-        
-        [Header("Heroes stats"),SerializeField,Range(1, 100)]
-        private int _speed = 1; 
-        [SerializeField,Range(1, 100)]
+
+        [Header("Heroes stats"), SerializeField, Range(1, 100)]
+        private int _speed = 1;
+        [SerializeField, Range(1, 100)]
         private float _attackCooldown = 1f;
-        [SerializeField,Range(1, 100)]
-        private float rangeAttack = 1f;
-        [SerializeField,Range(1, 15)]
+        [SerializeField, Range(1, 100)]
+        private float _rangeAttack = 1f;
+        [SerializeField, Range(1, 15)]
         private float _durationDebaff;
-        
-        [SerializeField,Range(1, 100)]
+
+        [SerializeField, Range(1, 100)]
         protected int _maxHealth;
-       
+
         private NavMeshAgent _agent;
         private float _currentHealth;
         private IDebuffable _debuffable;
         private bool _isDebuffed;
         private float _lastTimeAttacked;
-        private Heroes _target;
-        private WaitForSeconds _waitForSeconds;
+        private Hero _target;
+        private WaitForSeconds _waitForSecondsAttackCooldown;
+        private bool _isAttacking;
 
+        [field: SerializeField, Range(1, 100)]
+        public int Damage { get; private set; } = 1;
 
-        [field: SerializeField,Range(1, 100)]
-        public float Damage { get; private set; } = 1;
-        
-        protected  void Start()
+        private void Start()
         {
+            _waitForSecondsAttackCooldown = new WaitForSeconds(_attackCooldown);
             _debuffable = GetComponent<IDebuffable>();
 
             if (_debuffable == null) throw new Exception("Heroes has not been initialized");
 
             _currentHealth = _maxHealth;
-            InvokeOnHealthChanged();
+            OnHealthChanged?.Invoke(_currentHealth / _maxHealth);
+            OnDamageChanged?.Invoke();
 
             _lastTimeAttacked = _attackCooldown;
 
             _agent = GetComponent<NavMeshAgent>();
             _agent.speed = _speed;
-
-            InvokeOnDamageChanged();
         }
 
-        protected  void Update()
+        private void Update()
         {
             if (_target == null)
             {
-                InvokeOnWin();
+                OnWin?.Invoke(this);
                 return;
             }
 
             _agent.SetDestination(_target.transform.position);
-            Attack();
+            if (TargetInRange() && _isAttacking == false)
+            {
+                StartCoroutine(Attack());
+            }
         }
-        
-        public void InitTarget(Heroes target)
+
+        public void InitTarget(Hero target)
         {
             _target = target;
         }
-        
-        public void TakeDamage(int enemyDamage)
+
+        public void TakeDamage(int damage)
         {
-            if (enemyDamage < 0)
+            if (damage < 0)
                 throw new Exception("You cannot take damage less than 0");
 
-            _currentHealth = Mathf.Clamp(_currentHealth - enemyDamage, 0, _maxHealth);
-            InvokeOnHealthChanged();
+            _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maxHealth);
+            OnHealthChanged?.Invoke(_currentHealth / _maxHealth);
 
             if (_currentHealth == 0)
             {
@@ -87,7 +88,7 @@ namespace Game.Logic.Heroes
         }
 
         //Знаю что плохо.
-        public void TakeDebuffPoisen(int damage, float duration)
+        public void TakeDebuffPoison(int damage, float duration)
         {
             if (_isDebuffed == false)
                 StartCoroutine(DebuffPoison(duration, damage));
@@ -95,59 +96,50 @@ namespace Game.Logic.Heroes
 
         public void TakeDebuffBush(float bushDuration)
         {
-           
             if (_isDebuffed == false)
                 StartCoroutine(DebuffBush(bushDuration, bushDuration));
         }
 
         public void TakeDebuffWeakly(float weakness, float duretion)
         {
-           
             if (_isDebuffed == false)
                 StartCoroutine(DebuffWeakly(duretion, weakness));
         }
         //Не знаю как хорошо ну и работает это так себе мне кажется((
 
-        private void Attack()
+        private IEnumerator Attack()
         {
-            _lastTimeAttacked -= Time.deltaTime;
+            _isAttacking = true;
+            _target.TakeDamage(Damage);
+            _debuffable.DoDebuff(_target, _durationDebaff);
+            yield return _waitForSecondsAttackCooldown;
+            _isAttacking = false;
+        }
 
-            if (Vector3.Distance(transform.position, _target.transform.position) <= rangeAttack &&
-                _lastTimeAttacked <= 0)
+        private bool TargetInRange()
+        {
+            var distanceToTarget = (_target.transform.position - transform.position).sqrMagnitude;
+            if (distanceToTarget <= _rangeAttack * _rangeAttack)
             {
-                _target.TakeDamage((int)Damage);
-                _debuffable.DoDebuff(_target, _durationDebaff);
-                _lastTimeAttacked = _attackCooldown;
+                return true;
             }
-        }
 
-        private void InvokeOnHealthChanged()
-        {
-            OnHealthChanged?.Invoke(_currentHealth / _maxHealth);
-        }
-
-        private void InvokeOnWin()
-        {
-            OnWin?.Invoke(this);
-        }
-
-        private void InvokeOnDamageChanged()
-        {
-            OnDamageChanged?.Invoke();
+            return false;
         }
 
         private IEnumerator DebuffWeakly(float duration, float statsAffect)
         {
             _isDebuffed = true;
             var defaultStats = Damage;
-            Damage *= 1 - statsAffect;
-            InvokeOnDamageChanged();
+            var damageModifier = Damage * (1 - statsAffect);
+            Damage = (int)damageModifier;
+            OnDamageChanged?.Invoke();
 
             yield return new WaitForSeconds(duration);
 
             _isDebuffed = false;
             Damage = defaultStats;
-            InvokeOnDamageChanged();
+            OnDamageChanged?.Invoke();
         }
 
         private IEnumerator DebuffPoison(float duration, int statsAffect)
