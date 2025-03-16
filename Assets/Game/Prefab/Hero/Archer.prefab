@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3389860131550804158}
   - component: {fileID: 2085256791278370500}
   - component: {fileID: 5504218744355914456}
+  - component: {fileID: 8512133692573237753}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -149,12 +150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _attackCooldown: 16.8
+  _attackCooldown: 3.9
   _rangeAttack: 4
   _durationDebaff: 1
   _maxHealth: 10
   <Damage>k__BackingField: 5
-  _poisonDamage: 1
 --- !u!114 &5504218744355914456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +169,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hero: {fileID: 2085256791278370500}
   _statsHeroView: {fileID: 7719283158171905457}
+--- !u!114 &8512133692573237753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857370978754745669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb0a027a1848d354599adcfc7ff6356c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poisonDamage: 1
+  _poisonTick: 5
 --- !u!1001 &4408138888585788031
 PrefabInstance:
   m_ObjectHideFlags: 0

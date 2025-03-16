@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6686755203487907378}
   - component: {fileID: 1538644512035911961}
   - component: {fileID: 7805583810105863017}
+  - component: {fileID: -2673515187095507600}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Untagged
@@ -149,12 +150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 8
-  _attackCooldown: 34
+  _attackCooldown: 6
   _rangeAttack: 3
-  _durationDebaff: 1
+  _durationDebaff: 4
   _maxHealth: 20
   <Damage>k__BackingField: 5
-  _weakCountPersent: 0.5
 --- !u!114 &7805583810105863017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +169,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hero: {fileID: 1538644512035911961}
   _statsHeroView: {fileID: 5737851269414047610}
+--- !u!114 &-2673515187095507600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2237252540602262638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b4f5d1f2f764245866b85f4fffaac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "_weakCountPer\u0441ent": 0.5
 --- !u!1001 &1849937662848440500
 PrefabInstance:
   m_ObjectHideFlags: 0
