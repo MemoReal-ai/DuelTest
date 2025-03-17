@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _attackCooldown: 3.9
-  _rangeAttack: 4
+  _attackCooldown: 1.7
+  _rangeAttack: 20.4
   _durationDebaff: 1
   _maxHealth: 10
   <Damage>k__BackingField: 5
