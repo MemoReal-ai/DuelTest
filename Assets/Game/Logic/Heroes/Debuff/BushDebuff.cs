@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Game.Logic.Heroes
+namespace Game.Logic.Heroes.Debuff
 {
     [RequireComponent(typeof(Barbarian))]
-    public class BushDebaff : MonoBehaviour, IDebuffable
+    public class BushDebuff : MonoBehaviour, IDebuffable
     {
         [SerializeField, Range(0, 1)]
         private float _bushChance = 0.5f;

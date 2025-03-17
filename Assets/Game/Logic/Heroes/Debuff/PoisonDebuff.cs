@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Game.Logic.Heroes.Debaff
+namespace Game.Logic.Heroes.Debuff
 {
     [RequireComponent(typeof(Archer))]
     public class PoisonDebuff : MonoBehaviour, IDebuffable
