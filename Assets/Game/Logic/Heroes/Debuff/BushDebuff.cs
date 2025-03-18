@@ -3,24 +3,24 @@ using UnityEngine;
 
 namespace Game.Logic.Heroes.Debuff
 {
-    [RequireComponent(typeof(Barbarian))]
-    public class BushDebuff : MonoBehaviour, IDebuffable
+    public class BushDebuff : MonoBehaviour, IDebuff
     {
         [SerializeField, Range(0, 1)]
         private float _bushChance = 0.5f;
+        [SerializeField, Min(1)]
+        private float _durationDebuff;
 
-        private float _bushDuration;
+
         private WaitForSeconds _waitForSeconds;
         private bool _isDebuffed = false;
 
-        public void DoDebuff(Hero hero, float duration)
+        public void Execute(Hero hero)
         {
-            _bushDuration = duration;
             var bush = Random.value;
 
             if (_bushChance > bush && _isDebuffed == false)
             {
-                _waitForSeconds = new WaitForSeconds(_bushDuration);
+                _waitForSeconds = new WaitForSeconds(_durationDebuff);
                 StartCoroutine(DebuffCoroutine(hero));
             }
         }
@@ -29,11 +29,11 @@ namespace Game.Logic.Heroes.Debuff
         {
             _isDebuffed = true;
 
-            hero.IncreaseAttackCooldawn(_bushDuration);
-            Debug.Log($"Применен эффект Bush на  {hero.GetType().Name}");
+            hero.IncreaseAttackCooldown(_durationDebuff);
+            Debug.Log($"Применен эффект Bush на  {hero.name.Replace("(Clone)", string.Empty)}");
 
             yield return _waitForSeconds;
-            hero.RestoreAttackCooldawn();
+            hero.RestoreAttackCooldown();
             _isDebuffed = false;
         }
     }

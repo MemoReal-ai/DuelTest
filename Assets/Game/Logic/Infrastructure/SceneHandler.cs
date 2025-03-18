@@ -1,9 +1,8 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Game.Logic.Infrastructure
 {
-    public class SceneHandler : MonoBehaviour
+    public class SceneHandler
     {
         public void Restart()
         {

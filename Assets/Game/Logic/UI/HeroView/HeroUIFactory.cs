@@ -1,10 +1,10 @@
-using System;
 using Game.Logic.Heroes;
 using UnityEngine;
 
-namespace Game.Logic.UI.MVP
+
+namespace Game.Logic.UI.HeroView
 {
-    public class ModelHero : MonoBehaviour
+    public class HeroUIFactory : MonoBehaviour
     {
         [SerializeField] private Hero _hero;
         [SerializeField] private StatsHeroView _statsHeroView;
@@ -15,6 +15,7 @@ namespace Game.Logic.UI.MVP
         {
             _presenter = new Presenter(_statsHeroView, _hero);
             _presenter.Enable();
+            _presenter.SetDamageView();
         }
 
         private void OnDestroy()

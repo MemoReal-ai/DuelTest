@@ -3,20 +3,19 @@ using UnityEngine;
 
 namespace Game.Logic.Heroes.Debuff
 {
-    [RequireComponent(typeof(Mage))]
-    public class WeakDebuff : MonoBehaviour, IDebuffable
+    public class WeakDebuff : MonoBehaviour, IDebuff
     {
         [SerializeField, Range(0, 1)]
         private float _weakCountPerсent = 1;
+        [SerializeField, Min(0)]
+        private float _durationDebuff;
 
-        private float _weakDuration;
         private WaitForSeconds _waitForSeconds;
         private bool _isDebuffed = false;
 
-        public void DoDebuff(Hero hero, float duration)
+        public void Execute(Hero hero)
         {
-            _weakDuration = duration;
-            _waitForSeconds = new WaitForSeconds(_weakDuration);
+            _waitForSeconds = new WaitForSeconds(_durationDebuff);
 
             if (_isDebuffed == false)
             {
@@ -29,7 +28,7 @@ namespace Game.Logic.Heroes.Debuff
             _isDebuffed = true;
 
             hero.DecreaseAttack(_weakCountPerсent);
-            Debug.Log($"Примене эффект Weakly на {hero.GetType().Name}");
+            Debug.Log($"Примене эффект Weakly на {hero.name.Replace("(Clone)", string.Empty)}");
 
             yield return _waitForSeconds;
             hero.RestoreDamage();

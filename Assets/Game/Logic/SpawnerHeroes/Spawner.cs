@@ -8,7 +8,6 @@ namespace Game.Logic.SpawnerHeroes
     {
         [SerializeField] private Hero[] _heroes;
         [SerializeField] private Transform[] _spawnPoints;
-        [SerializeField] private int _countHeroes = 2;
 
         private readonly List<Hero> _containerHeroes = new();
 
@@ -22,7 +21,7 @@ namespace Game.Logic.SpawnerHeroes
 
         private void CreateRandomHero()
         {
-            for (var i = 0; i < _countHeroes; i++)
+            for (var i = 0; i < _heroes.Length - 1; i++)
             {
                 var randomIndex = Random.Range(0, _heroes.Length);
                 var randomHero = Instantiate(_heroes[randomIndex], _spawnPoints[i].position, Quaternion.identity);
@@ -32,11 +31,8 @@ namespace Game.Logic.SpawnerHeroes
 
         private void SetTargetHero()
         {
-            if (_containerHeroes.Count == _countHeroes)
-            {
-                _containerHeroes[0].InitTarget(_containerHeroes[1]);
-                _containerHeroes[1].InitTarget(_containerHeroes[0]);
-            }
+            _containerHeroes[0].InitTarget(_containerHeroes[1]);
+            _containerHeroes[1].InitTarget(_containerHeroes[0]);
         }
     }
 }

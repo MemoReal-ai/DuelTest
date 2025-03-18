@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3659877089473098154}
   - component: {fileID: 277419783729117234}
   - component: {fileID: 3389860131550804158}
-  - component: {fileID: 2085256791278370500}
   - component: {fileID: 5504218744355914456}
   - component: {fileID: 8512133692573237753}
+  - component: {fileID: -6225911548223951873}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -137,24 +137,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2085256791278370500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2857370978754745669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f4013ac80b21942bec50ac67427ef9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 5
-  _attackCooldown: 1.7
-  _rangeAttack: 20.4
-  _durationDebaff: 1
-  _maxHealth: 10
-  <Damage>k__BackingField: 5
 --- !u!114 &5504218744355914456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8387ecc3d293834096283d8e33aa44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hero: {fileID: 2085256791278370500}
+  _hero: {fileID: -6225911548223951873}
   _statsHeroView: {fileID: 7719283158171905457}
 --- !u!114 &8512133692573237753
 MonoBehaviour:
@@ -183,6 +165,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poisonDamage: 1
   _poisonTick: 5
+  _durationDebuff: 1
+--- !u!114 &-6225911548223951873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857370978754745669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a28045a4b995974e8e5b1d4af4e44f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 4
+  _attackCooldown: 2
+  _rangeAttack: 8
+  _maxHealth: 15
+  <Damage>k__BackingField: 2
 --- !u!1001 &4408138888585788031
 PrefabInstance:
   m_ObjectHideFlags: 0

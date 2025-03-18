@@ -2,13 +2,15 @@ using Game.Logic.Infrastructure;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Logic.UI.MVP_WinPanel
+namespace Game.Logic.UI.WinPanelView
 {
     public class RestartButton : MonoBehaviour
     {
         [SerializeField] private Button _button;
-        [SerializeField] private SceneHandler _sceneHandler;
 
+        private SceneHandler _sceneHandler;
+
+      
         private void Start()
         {
             _button.onClick.AddListener(_sceneHandler.Restart);
@@ -18,5 +20,11 @@ namespace Game.Logic.UI.MVP_WinPanel
         {
             _button.onClick.RemoveListener(_sceneHandler.Restart);
         }
+        
+        public void Initialize(SceneHandler sceneHandler)
+        {
+            _sceneHandler = sceneHandler;
+        }
+
     }
 }

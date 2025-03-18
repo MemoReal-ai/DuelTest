@@ -6,53 +6,52 @@ using UnityEngine.AI;
 namespace Game.Logic.Heroes
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public abstract class Hero : MonoBehaviour
+    public class Hero : MonoBehaviour
     {
         public event Action<float> OnHealthChanged;
         public event Action<Hero> OnWin;
         public event Action OnDamageChanged;
 
-        [Header("Heroes stats"), SerializeField, Range(1, 100)]
+        [Header("Heroes stats"), SerializeField, Min(1)]
         private int _speed = 1;
-        [SerializeField, Range(1, 100)]
+        [SerializeField, Min(1)]
         private float _attackCooldown = 1f;
-        [SerializeField, Range(1, 100)]
+        [SerializeField, Min(1)]
         private float _rangeAttack = 1f;
-        [SerializeField, Range(1, 15)]
-        private float _durationDebaff;
 
-        [SerializeField, Range(1, 100)]
+
+        [SerializeField, Min(1)]
         protected int _maxHealth;
 
         private NavMeshAgent _agent;
         private float _currentHealth;
-        private IDebuffable _debuffable;
+        private IDebuff _debuff;
         private Hero _target;
         private WaitForSeconds _waitForSecondsAttackCooldown;
         private bool _isAttacking;
         private int _damageDefault;
         private float _attackCooldownDefault;
+        private readonly float _distanceToStop = 1f;
 
-        [field: SerializeField, Range(1, 100)]
+        [field: SerializeField, Min(0)]
         public int Damage { get; private set; } = 1;
 
         private void Start()
         {
             _waitForSecondsAttackCooldown = new WaitForSeconds(_attackCooldown);
-            _debuffable = GetComponent<IDebuffable>();
+            _debuff = GetComponent<IDebuff>();
 
-            if (_debuffable == null)
+            if (_debuff == null)
             {
                 throw new Exception("Heroes has not been initialized");
             }
 
             _currentHealth = _maxHealth;
             OnHealthChanged?.Invoke(_currentHealth / _maxHealth);
-            OnDamageChanged?.Invoke();
 
             _damageDefault = Damage;
             _attackCooldownDefault = _attackCooldown;
-            
+
             _agent = GetComponent<NavMeshAgent>();
             _agent.speed = _speed;
         }
@@ -65,7 +64,10 @@ namespace Game.Logic.Heroes
                 return;
             }
 
-            _agent.SetDestination(_target.transform.position);
+            if (Vector3.SqrMagnitude(_target.transform.position - transform.position) > _distanceToStop)
+            {
+                _agent.SetDestination(_target.transform.position);
+            }
 
             if (TargetInRange() && _isAttacking == false)
             {
@@ -104,22 +106,22 @@ namespace Game.Logic.Heroes
             OnDamageChanged?.Invoke();
         }
 
-        public void IncreaseAttackCooldawn(float timeToIncrease)
+        public void IncreaseAttackCooldown(float timeToIncrease)
         {
             _attackCooldown += timeToIncrease;
         }
 
-        public void RestoreAttackCooldawn()
+        public void RestoreAttackCooldown()
         {
             _attackCooldown = _attackCooldownDefault;
         }
-        
+
         private IEnumerator Attack()
         {
             _isAttacking = true;
 
             _target.TakeDamage(Damage);
-            _debuffable.DoDebuff(_target, _durationDebaff);
+            _debuff.Execute(_target);
 
             yield return _waitForSecondsAttackCooldown;
 

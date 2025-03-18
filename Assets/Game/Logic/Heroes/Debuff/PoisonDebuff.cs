@@ -3,25 +3,24 @@ using UnityEngine;
 
 namespace Game.Logic.Heroes.Debuff
 {
-    [RequireComponent(typeof(Archer))]
-    public class PoisonDebuff : MonoBehaviour, IDebuffable
+    public class PoisonDebuff : MonoBehaviour, IDebuff
     {
         [SerializeField] private int _poisonDamage = 1;
         [SerializeField] private int _poisonTick = 5;
+        [SerializeField, Min(1)]
+        private float _durationDebuff;
 
-        private float _poisonDuration;
         private WaitForSeconds _waitForSeconds;
         private bool _isDebuffed = false;
 
-        public void DoDebuff(Hero hero, float duration)
+        public void Execute(Hero hero)
         {
             if (_isDebuffed == false)
             {
-                _poisonDuration = duration;
-                _waitForSeconds = new WaitForSeconds(_poisonDuration);
+                _waitForSeconds = new WaitForSeconds(_durationDebuff);
 
                 StartCoroutine(DebuffCoroutine(hero));
-                Debug.Log($"Применен эффект Poison на {hero.GetType().Name}");
+                Debug.Log($"Применен эффект Poison на {hero.name.Replace("(Clone)", string.Empty)}");
             }
         }
 
@@ -36,7 +35,7 @@ namespace Game.Logic.Heroes.Debuff
                 }
 
                 hero.TakeDamage(_poisonDamage);
-                Debug.Log($"Применен тик Poison на {hero.GetType().Name}");
+                Debug.Log($"Применен тик Poison на {hero.name.Replace("(Clone)", string.Empty)}");
                 yield return _waitForSeconds;
             }
 

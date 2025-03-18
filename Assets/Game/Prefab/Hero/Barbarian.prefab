@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6764875636550225308}
   - component: {fileID: 7618453722336289917}
   - component: {fileID: 107524575407871254}
-  - component: {fileID: 2429446892346999252}
   - component: {fileID: -1784058467461933441}
   - component: {fileID: 125916263003429700}
+  - component: {fileID: 1025487465912406745}
   m_Layer: 0
   m_Name: Barbarian
   m_TagString: Untagged
@@ -137,24 +137,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2429446892346999252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9221316362931714189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 156cbd43fc5b4b75a6e8834fed529421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 11
-  _attackCooldown: 2
-  _rangeAttack: 2
-  _durationDebaff: 2
-  _maxHealth: 27
-  <Damage>k__BackingField: 7
 --- !u!114 &-1784058467461933441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8387ecc3d293834096283d8e33aa44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hero: {fileID: 2429446892346999252}
+  _hero: {fileID: 1025487465912406745}
   _statsHeroView: {fileID: 45090982936046138}
 --- !u!114 &125916263003429700
 MonoBehaviour:
@@ -182,6 +164,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bushChance: 0.3
+  _durationDebuff: 1
+--- !u!114 &1025487465912406745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9221316362931714189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a28045a4b995974e8e5b1d4af4e44f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  _attackCooldown: 4
+  _rangeAttack: 1
+  _distanceToStop: 10
+  _maxHealth: 20
+  <Damage>k__BackingField: 7
 --- !u!1001 &6245524934315589108
 PrefabInstance:
   m_ObjectHideFlags: 0

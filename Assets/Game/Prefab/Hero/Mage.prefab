@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6048371602630736476}
   - component: {fileID: 8481259318218430213}
   - component: {fileID: 6686755203487907378}
-  - component: {fileID: 1538644512035911961}
   - component: {fileID: 7805583810105863017}
   - component: {fileID: -2673515187095507600}
+  - component: {fileID: 999166787659171914}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Untagged
@@ -137,24 +137,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1538644512035911961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2237252540602262638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ed19e958c841e8ae8f3161e4c7cbbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 8
-  _attackCooldown: 6
-  _rangeAttack: 3
-  _durationDebaff: 4
-  _maxHealth: 20
-  <Damage>k__BackingField: 5
 --- !u!114 &7805583810105863017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8387ecc3d293834096283d8e33aa44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hero: {fileID: 1538644512035911961}
+  _hero: {fileID: 999166787659171914}
   _statsHeroView: {fileID: 5737851269414047610}
 --- !u!114 &-2673515187095507600
 MonoBehaviour:
@@ -182,6 +164,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   "_weakCountPer\u0441ent": 0.5
+  _durationDebuff: 1.6
+--- !u!114 &999166787659171914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2237252540602262638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a28045a4b995974e8e5b1d4af4e44f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 7
+  _attackCooldown: 3
+  _rangeAttack: 3
+  _maxHealth: 10
+  <Damage>k__BackingField: 3
 --- !u!1001 &1849937662848440500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -190,14 +190,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8166958605827806140}
     m_Modifications:
-    - target: {fileID: 738056096400556707, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
-      propertyPath: hero
-      value: 
-      objectReference: {fileID: 1538644512035911961}
-    - target: {fileID: 738056096400556707, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
-      propertyPath: _hero
-      value: 
-      objectReference: {fileID: 1538644512035911961}
     - target: {fileID: 6205849787227962204, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
       propertyPath: m_fontSize
       value: 12
@@ -306,14 +298,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StatsUICanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8922959870266010945, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
-      propertyPath: hero
-      value: 
-      objectReference: {fileID: 1538644512035911961}
-    - target: {fileID: 8922959870266010945, guid: cde4d98caa4470541816dc25be6936eb, type: 3}
-      propertyPath: _hero
-      value: 
-      objectReference: {fileID: 1538644512035911961}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,6 +1,6 @@
 using Game.Logic.Heroes;
 
-namespace Game.Logic.UI.MVP
+namespace Game.Logic.UI.HeroView
 {
     public class Presenter
     {
@@ -25,9 +25,9 @@ namespace Game.Logic.UI.MVP
             _hero.OnDamageChanged -= SetDamageView;
         }
 
-        private void SetDamageView()
+        public void SetDamageView()
         {
-            _statsHeroView.ShowDamage(_hero);
+            _statsHeroView.ShowDamage(_hero.Damage);
         }
 
         private void SetHealth(float health)

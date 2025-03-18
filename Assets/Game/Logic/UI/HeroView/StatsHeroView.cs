@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Logic.UI.MVP
+namespace Game.Logic.UI.HeroView
 {
     public class StatsHeroView : MonoBehaviour
     {
@@ -15,9 +15,9 @@ namespace Game.Logic.UI.MVP
             _hpBar.fillAmount = health;
         }
     
-        public void ShowDamage(Hero hero)
+        public void ShowDamage(int heroDamage)
         {
-            _text.text = hero.Damage.ToString();
+            _text.text = heroDamage.ToString();
         }
     }
 }
