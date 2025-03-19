@@ -64,7 +64,7 @@ namespace Game.Logic.Heroes
                 return;
             }
 
-            if (Vector3.SqrMagnitude(_target.transform.position - transform.position) > _distanceToStop)
+            if (!TargetInRange())
             {
                 _agent.SetDestination(_target.transform.position);
             }

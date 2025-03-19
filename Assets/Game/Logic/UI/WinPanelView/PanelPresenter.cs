@@ -14,7 +14,7 @@ namespace Game.Logic.UI.WinPanelView
             _heroes = heroes;
         }
 
-        public void Subscribe()
+        public void Enable()
         {
             foreach (var hero in _heroes)
             {
@@ -22,7 +22,7 @@ namespace Game.Logic.UI.WinPanelView
             }
         }
 
-        public void Unsubscribe()
+        public void Disable()
         {
             foreach (var hero in _heroes)
             {

@@ -14,12 +14,12 @@ namespace Game.Logic.UI.WinPanelView
         private void Start()
         {
             _presenter = new PanelPresenter(_winPanelView, _spawner.ContainerHeroes);
-            _presenter.Subscribe();
+            _presenter.Enable();
         }
 
         private void OnDestroy()
         {
-            _presenter.Unsubscribe();
+            _presenter.Disable();
         }
     }
 }
