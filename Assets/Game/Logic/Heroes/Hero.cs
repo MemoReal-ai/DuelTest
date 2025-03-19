@@ -31,7 +31,6 @@ namespace Game.Logic.Heroes
         private bool _isAttacking;
         private int _damageDefault;
         private float _attackCooldownDefault;
-        private readonly float _distanceToStop = 1f;
 
         [field: SerializeField, Min(0)]
         public int Damage { get; private set; } = 1;
