@@ -21,7 +21,7 @@ namespace Game.Logic.SpawnerHeroes
 
         private void CreateRandomHero()
         {
-            for (var i = 0; i < _heroes.Length - 1; i++)
+            for (var i = 0; i < _spawnPoints.Length; i++)
             {
                 var randomIndex = Random.Range(0, _heroes.Length);
                 var randomHero = Instantiate(_heroes[randomIndex], _spawnPoints[i].position, Quaternion.identity);

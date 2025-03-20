@@ -12,6 +12,7 @@ namespace Game.Logic.UI.WinPanelView
         {
             _winPanelView = winPanelView;
             _heroes = heroes;
+            _winPanelView.gameObject.SetActive(false);
         }
 
         public void Enable()

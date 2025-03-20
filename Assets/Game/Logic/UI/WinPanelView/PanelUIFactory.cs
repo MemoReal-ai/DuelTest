@@ -1,23 +1,34 @@
-using Game.Logic.Heroes;
+using Game.Logic.Infrastructure;
 using Game.Logic.SpawnerHeroes;
 using UnityEngine;
 
 namespace Game.Logic.UI.WinPanelView
 {
-    public class PanelUIFactory : MonoBehaviour
+    public class PanelUIFactory
     {
-        [SerializeField] private Spawner _spawner;
-        [SerializeField] private WinPanelView _winPanelView;
-
+        private readonly Spawner _spawner;
+        private readonly WinPanelView _winPanelView;
+        private readonly SceneHandler _sceneHandler;
+        
         private PanelPresenter _presenter;
 
-        private void Start()
+        public PanelUIFactory(Spawner spawner, WinPanelView winPanelView, SceneHandler sceneHandler)
         {
-            _presenter = new PanelPresenter(_winPanelView, _spawner.ContainerHeroes);
+            _spawner = spawner;
+            _winPanelView = winPanelView;
+            _sceneHandler = sceneHandler;
+            Enable();
+        }
+
+        private void Enable()
+        {
+            var createPanel = Object.Instantiate(_winPanelView);
+            createPanel.Initialize(_sceneHandler);
+            _presenter = new PanelPresenter(createPanel, _spawner.ContainerHeroes);
             _presenter.Enable();
         }
 
-        private void OnDestroy()
+        public void Disable()
         {
             _presenter.Disable();
         }

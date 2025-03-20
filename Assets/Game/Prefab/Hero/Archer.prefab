@@ -178,11 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a28045a4b995974e8e5b1d4af4e44f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _attackCooldown: 2
-  _rangeAttack: 8
-  _maxHealth: 15
-  <Damage>k__BackingField: 2
+  <HeroConfig>k__BackingField: {fileID: 11400000, guid: 4008f065bbd5d2d4097eedbeadaa8a13, type: 2}
 --- !u!1001 &4408138888585788031
 PrefabInstance:
   m_ObjectHideFlags: 0
