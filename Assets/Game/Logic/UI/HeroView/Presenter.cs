@@ -27,7 +27,7 @@ namespace Game.Logic.UI.HeroView
 
         public void SetDamageView()
         {
-            _statsHeroView.ShowDamage(_hero.HeroConfig.Damage);
+            _statsHeroView.ShowDamage(_hero.CurrentDamage);
         }
 
         private void SetHealth(float health)

@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d915cc60f24fab64e93d631787e0deb5, type: 3}
-  m_Name: Archer
+  m_Script: {fileID: 11500000, guid: 2c104616ffcdba645bd8f02f6a7b7e79, type: 3}
+  m_Name: WeakDebuff
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 4
-  <AttackCooldown>k__BackingField: 2
-  <RangeAttack>k__BackingField: 8
-  <MaxHealth>k__BackingField: 15
-  <Damage>k__BackingField: 6
+  <PercentStatus>k__BackingField: 0.445
+  <Duration>k__BackingField: 1

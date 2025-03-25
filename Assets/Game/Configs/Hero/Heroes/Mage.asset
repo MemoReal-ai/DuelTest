@@ -16,4 +16,4 @@ MonoBehaviour:
   <AttackCooldown>k__BackingField: 3
   <RangeAttack>k__BackingField: 3
   <MaxHealth>k__BackingField: 10
-  <Damage>k__BackingField: 3
+  <Damage>k__BackingField: 2

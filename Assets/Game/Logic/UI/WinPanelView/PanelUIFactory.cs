@@ -9,7 +9,7 @@ namespace Game.Logic.UI.WinPanelView
         private readonly Spawner _spawner;
         private readonly WinPanelView _winPanelView;
         private readonly SceneHandler _sceneHandler;
-        
+
         private PanelPresenter _presenter;
 
         public PanelUIFactory(Spawner spawner, WinPanelView winPanelView, SceneHandler sceneHandler)

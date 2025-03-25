@@ -1,25 +1,36 @@
+using System;
 using Game.Logic.SpawnerHeroes;
+using Game.Logic.UI.HeroView;
 using Game.Logic.UI.WinPanelView;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Logic.Infrastructure
 {
-    public class Bootstrap : MonoBehaviour
+    public class Bootstrap : IInitializable, IDisposable
     {
-        [SerializeField] private WinPanelView _winPanelView;
-        [SerializeField] private Spawner _spawner;
-
+        private readonly WinPanelView _winPanelView;
         private PanelUIFactory _panelUIFactory;
+        private HeroUIFactory _heroUIFactory;
+        private Spawner _spawner;
 
-        private void Awake()
+
+        public Bootstrap(WinPanelView winPanelView,Spawner spawner)
         {
-            var sceneHandler = new SceneHandler();
-            _panelUIFactory = new PanelUIFactory(_spawner, _winPanelView,sceneHandler);
+            _winPanelView = winPanelView;
+            _spawner = spawner;
         }
 
-        private void OnDestroy()
+        public void Initialize()
+        {
+            var sceneHandler = new SceneHandler();
+            _panelUIFactory = new PanelUIFactory(_spawner, _winPanelView, sceneHandler);
+        }
+
+        public void Dispose()
         {
             _panelUIFactory.Disable();
+            _spawner.Disable();
         }
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Configs.Hero.Heroes
 {
-    [CreateAssetMenu(fileName = "HeroConfig", menuName = "Hero Config")]
+    [CreateAssetMenu(fileName = "HeroConfig", menuName = "Config/Hero Config")]
     public class HeroConfig : ScriptableObject
     {
         [field: SerializeField, Min(1)]
@@ -19,20 +19,15 @@ namespace Game.Configs.Hero.Heroes
 
         [field: SerializeField, Min(0)]
         public int Damage { get; private set; } = 1;
-
-        public void DecreaseAttack(float percentDecrease)
-        {
-            Damage = (int)(Damage * (1 - percentDecrease));
-        }
-
+        
         public void IncreaseAttackCooldown(float timeToIncrease)
         {
             AttackCooldown += timeToIncrease;
         }
 
-        public void RestoreDamage(int damageDefault)
+        public int RestoreDamage()
         {
-            Damage = damageDefault;
+            return Damage;
         }
 
         public void RestoreAttackCooldown(float attackCooldownDefault)

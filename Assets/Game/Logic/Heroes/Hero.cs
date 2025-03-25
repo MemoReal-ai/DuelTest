@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using Game.Configs.Hero.Heroes;
+using Game.Logic.Infrastructure;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Game.Logic.Heroes
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Hero : MonoBehaviour
+    public abstract class Hero : MonoBehaviour
     {
         public event Action<float> OnHealthChanged;
         public event Action<Hero> OnWin;
@@ -15,30 +16,30 @@ namespace Game.Logic.Heroes
 
         private NavMeshAgent _agent;
         private float _currentHealth;
-        private IDebuff _debuff;
         private Hero _target;
         private WaitForSeconds _waitForSecondsAttackCooldown;
         private bool _isAttacking;
-        private int _damageDefault;
         private float _attackCooldownDefault;
+
+        protected CoroutineLauncher Launcher;
+        protected IDebuff Debuff;
 
         [field: SerializeField]
         public HeroConfig HeroConfig { get; private set; }
+        public int CurrentDamage { get; private set; }
 
-        private void Start()
+        private void Awake()
+        {
+            CurrentDamage = HeroConfig.Damage;
+        }
+
+        protected virtual void Start()
         {
             _waitForSecondsAttackCooldown = new WaitForSeconds(HeroConfig.AttackCooldown);
-            _debuff = GetComponent<IDebuff>();
-
-            if (_debuff == null)
-            {
-                throw new Exception("Heroes has not been initialized");
-            }
 
             _currentHealth = HeroConfig.MaxHealth;
             OnHealthChanged?.Invoke(_currentHealth / HeroConfig.MaxHealth);
 
-            _damageDefault = HeroConfig.Damage;
             _attackCooldownDefault = HeroConfig.AttackCooldown;
 
             _agent = GetComponent<NavMeshAgent>();
@@ -73,6 +74,11 @@ namespace Game.Logic.Heroes
             _target = target;
         }
 
+        public void InitCoroutineLauncher(CoroutineLauncher launcher)
+        {
+            Launcher = launcher;
+        }
+
         public void TakeDamage(int damage)
         {
             if (damage < 0)
@@ -89,13 +95,13 @@ namespace Game.Logic.Heroes
 
         public void DecreaseAttack(float percentDecrease)
         {
-            HeroConfig.DecreaseAttack(percentDecrease);
+            CurrentDamage = (int)(CurrentDamage * (1 - percentDecrease));
             OnDamageChanged?.Invoke();
         }
 
         public void RestoreDamage()
         {
-            HeroConfig.RestoreDamage(_damageDefault);
+            CurrentDamage = HeroConfig.RestoreDamage();
             OnDamageChanged?.Invoke();
         }
 
@@ -113,8 +119,8 @@ namespace Game.Logic.Heroes
         {
             _isAttacking = true;
 
-            _target.TakeDamage(HeroConfig.Damage);
-            _debuff.Execute(_target);
+            _target.TakeDamage(CurrentDamage);
+            Debuff.Execute(_target);
 
             yield return _waitForSecondsAttackCooldown;
 

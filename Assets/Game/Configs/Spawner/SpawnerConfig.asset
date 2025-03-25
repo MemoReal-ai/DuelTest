@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3974cd6e50b5e8a40940565ae53607aa, type: 3}
+  m_Name: SpawnerConfig
+  m_EditorClassIdentifier: 
+  <Heroes>k__BackingField:
+  - {fileID: 6854451178446570946, guid: e52dba140d2690a46b4f22b087a94238, type: 3}
+  - {fileID: 7738435270233637417, guid: 4c0d8a9b9a057e04cb7187ea55f0526e, type: 3}
+  - {fileID: 303949475786470939, guid: 35acdb3ad21d97e4fa7a251b79d86c47, type: 3}
