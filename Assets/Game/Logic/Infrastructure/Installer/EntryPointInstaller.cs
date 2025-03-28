@@ -16,6 +16,10 @@ namespace Game.Logic.Infrastructure.Installer
         {
             Container.BindInterfacesTo<EntryPoint>().AsSingle();
             Container.Bind<DataHandler>().FromComponentInHierarchy().AsSingle();
+           
+            var sceneHandler=new SceneHandler();
+            Container.Bind<SceneHandler>().FromInstance(sceneHandler).AsSingle();
+            
             InstallSpawner();
             InstallUI();
         }

@@ -3,6 +3,7 @@ using Game.Logic.SpawnerHeroes;
 using Game.Logic.UI.HeroView;
 using Game.Logic.UI.WinPanelView;
 using Zenject;
+using Zenject.SpaceFighter;
 
 namespace Game.Logic.Infrastructure
 {
@@ -13,6 +14,7 @@ namespace Game.Logic.Infrastructure
         private readonly StatsHeroView _statsHeroView;
         private readonly WinPanelView _winPanelView;
         private readonly DataHandler _dataHandler;
+        private readonly SceneHandler _sceneHandler;
         private PanelUIFactory _panelUIFactory;
         private HeroUIFactory _heroUIFactory;
         private Spawner _spawner;
@@ -20,14 +22,18 @@ namespace Game.Logic.Infrastructure
         public EntryPoint(WinPanelView winPanelView,
             SpawnerConfig spawnerConfig,
             SpawnPoints spawnPoints,
-            StatsHeroView statsHeroView, DataHandler dataHandler)
+            StatsHeroView statsHeroView,
+            DataHandler dataHandler,
+            SceneHandler sceneHandler)
         {
             _winPanelView = winPanelView;
             _spawnerConfig = spawnerConfig;
             _spawnPoints = spawnPoints;
             _statsHeroView = statsHeroView;
             _dataHandler = dataHandler;
+            _sceneHandler = sceneHandler;
         }
+        //какой же пухлый энтри поинт
 
         public void Initialize()
         {
@@ -36,9 +42,7 @@ namespace Game.Logic.Infrastructure
             _spawner = new Spawner(_spawnerConfig, _spawnPoints, _statsHeroView);
             _spawner.SpawnHeroes();
 
-            var sceneHandler = new SceneHandler();
-
-            _panelUIFactory = new PanelUIFactory(_spawner, _winPanelView, sceneHandler);
+            _panelUIFactory = new PanelUIFactory(_spawner, _winPanelView, _sceneHandler);
             _panelUIFactory.Enable();
         }
 
