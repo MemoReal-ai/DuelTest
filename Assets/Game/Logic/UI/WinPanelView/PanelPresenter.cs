@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.Logic.Heroes;
+using Game.Logic.Infrastructure;
 
 namespace Game.Logic.UI.WinPanelView
 {
@@ -7,11 +8,14 @@ namespace Game.Logic.UI.WinPanelView
     {
         private readonly WinPanelView _winPanelView;
         private readonly IEnumerable<Hero> _heroes;
+        private readonly SceneHandler _sceneHandler;
 
-        public PanelPresenter(WinPanelView winPanelView, IEnumerable<Hero> heroes)
+        public PanelPresenter(WinPanelView winPanelView, IEnumerable<Hero> heroes, SceneHandler sceneHandler)
         {
             _winPanelView = winPanelView;
             _heroes = heroes;
+            _sceneHandler = sceneHandler;
+
             _winPanelView.gameObject.SetActive(false);
         }
 
@@ -21,6 +25,8 @@ namespace Game.Logic.UI.WinPanelView
             {
                 hero.OnWin += Show;
             }
+
+            _winPanelView.RestartButton.onClick.AddListener(_sceneHandler.Restart);
         }
 
         public void Disable()
@@ -29,6 +35,7 @@ namespace Game.Logic.UI.WinPanelView
             {
                 hero.OnWin -= Show;
             }
+            _winPanelView.RestartButton.onClick.RemoveListener(_sceneHandler.Restart);
         }
 
         private void Show(Hero hero)

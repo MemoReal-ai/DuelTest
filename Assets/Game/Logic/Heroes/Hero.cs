@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using Game.Configs.Hero.Heroes;
-using Game.Logic.Infrastructure;
+using Cysharp.Threading.Tasks;
+using Game.Logic.Heroes.Debuff;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,7 +20,6 @@ namespace Game.Logic.Heroes
         private bool _isAttacking;
         private float _attackCooldownDefault;
 
-        protected CoroutineLauncher Launcher;
         protected IDebuff Debuff;
 
         [field: SerializeField]
@@ -35,8 +33,6 @@ namespace Game.Logic.Heroes
 
         protected virtual void Start()
         {
-            _waitForSecondsAttackCooldown = new WaitForSeconds(HeroConfig.AttackCooldown);
-
             _currentHealth = HeroConfig.MaxHealth;
             OnHealthChanged?.Invoke(_currentHealth / HeroConfig.MaxHealth);
 
@@ -50,7 +46,6 @@ namespace Game.Logic.Heroes
         {
             if (_target == null)
             {
-                OnWin?.Invoke(this);
                 return;
             }
 
@@ -60,11 +55,11 @@ namespace Game.Logic.Heroes
             }
             else
             {
-                _agent.SetDestination(transform.position);
+                _agent.Stop();
 
                 if (_isAttacking == false)
                 {
-                    StartCoroutine(Attack());
+                    _ = Attack();
                 }
             }
         }
@@ -72,11 +67,6 @@ namespace Game.Logic.Heroes
         public void InitTarget(Hero target)
         {
             _target = target;
-        }
-
-        public void InitCoroutineLauncher(CoroutineLauncher launcher)
-        {
-            Launcher = launcher;
         }
 
         public void TakeDamage(int damage)
@@ -90,6 +80,8 @@ namespace Game.Logic.Heroes
             if (_currentHealth == 0)
             {
                 Destroy(gameObject);
+                _target.HeroConfig.IncreaseWinCount();
+                OnWin?.Invoke(_target);
             }
         }
 
@@ -115,15 +107,14 @@ namespace Game.Logic.Heroes
             HeroConfig.RestoreAttackCooldown(_attackCooldownDefault);
         }
 
-        private IEnumerator Attack()
+        private async UniTask Attack()
         {
             _isAttacking = true;
 
             _target.TakeDamage(CurrentDamage);
             Debuff.Execute(_target);
 
-            yield return _waitForSecondsAttackCooldown;
-
+            await UniTask.Delay(TimeSpan.FromSeconds(_attackCooldownDefault));
             _isAttacking = false;
         }
 

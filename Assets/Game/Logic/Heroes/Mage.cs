@@ -10,7 +10,7 @@ namespace Game.Logic.Heroes
         protected override void Start()
         {
             base.Start();
-            Debuff = new WeakDebuff(_debuffWeaklyConfig, Launcher);
+            Debuff = new WeakDebuff(_debuffWeaklyConfig);
         }
     }
 }

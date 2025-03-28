@@ -1,4 +1,3 @@
-using Game.Logic.Infrastructure;
 using UnityEngine;
 
 namespace Game.Logic.Heroes.Debuff

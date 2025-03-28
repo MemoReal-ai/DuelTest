@@ -279,7 +279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Barbarian\n winning"
+  m_text: "Archer\n winning"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 160068139140149567}
-  _restartButton: {fileID: 3801150434148271566}
+  <RestartButton>k__BackingField: {fileID: 3801150434148271566}
 --- !u!1 &7713246784982905794
 GameObject:
   m_ObjectHideFlags: 0

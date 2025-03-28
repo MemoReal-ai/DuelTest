@@ -1,19 +1,17 @@
-using System.Collections;
-using Game.Logic.Infrastructure;
+using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Logic.Heroes.Debuff
 {
     public class BushDebuff : IDebuff
     {
-        private readonly CoroutineLauncher _launcher;
         private readonly DebuffBushConfig _config;
-        private WaitForSeconds _waitForSeconds;
-        private bool _isDebuffed = false;
+        private bool _isDebuffed;
 
-        public BushDebuff(DebuffBushConfig config,CoroutineLauncher launcher)
+        public BushDebuff(DebuffBushConfig config)
         {
-            _launcher = launcher;
             _config = config;
         }
 
@@ -23,19 +21,18 @@ namespace Game.Logic.Heroes.Debuff
 
             if (_config.BushChance > bush && _isDebuffed == false)
             {
-                _waitForSeconds = new WaitForSeconds(_config.DurationDebuff);
-                _launcher.LaunchCoroutine( DebuffCoroutine(hero));
+                _ = Debuff(hero);
             }
         }
 
-        private IEnumerator DebuffCoroutine(Hero hero)
+        private async UniTask Debuff(Hero hero)
         {
             _isDebuffed = true;
 
             hero.IncreaseAttackCooldown(_config.DurationDebuff);
             Debug.Log($"Применен эффект Bush на  {hero.name.Replace("(Clone)", string.Empty)}");
 
-            yield return _waitForSeconds;
+            await UniTask.Delay(TimeSpan.FromSeconds(_config.DurationDebuff));
             hero.RestoreAttackCooldown();
             _isDebuffed = false;
         }

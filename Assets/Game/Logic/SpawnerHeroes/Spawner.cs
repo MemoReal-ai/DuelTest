@@ -1,29 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.Logic.Heroes;
-using Game.Logic.Infrastructure;
 using Game.Logic.UI.HeroView;
 
 namespace Game.Logic.SpawnerHeroes
 {
     public class Spawner
     {
-        private readonly CoroutineLauncher _launcher;
         private readonly SpawnerConfig _config;
-        private readonly Transform[] _spawnPoints;
+        private readonly SpawnPoints _spawnPoints;
         private readonly StatsHeroView _statsHeroView;
         private readonly List<Hero> _containerHeroes = new();
 
         private HeroUIFactory _heroUIFactory;
         public IEnumerable<Hero> ContainerHeroes => _containerHeroes;
 
-        public Spawner(SpawnerConfig config, Transform[] spawnPoints, StatsHeroView statsHeroView,
-            CoroutineLauncher launcher)
+        public Spawner(SpawnerConfig config, SpawnPoints spawnPoints, StatsHeroView statsHeroView)
         {
             _config = config;
             _spawnPoints = spawnPoints;
             _statsHeroView = statsHeroView;
-            _launcher = launcher;
         }
 
         public void SpawnHeroes()
@@ -34,15 +30,17 @@ namespace Game.Logic.SpawnerHeroes
 
         private void CreateRandomHero()
         {
-            for (var i = 0; i < _spawnPoints.Length; i++)
+            foreach (var t in _spawnPoints.Points)
             {
                 var randomIndex = Random.Range(0, _config.Heroes.Length);
                 var randomHero =
-                    Object.Instantiate(_config.Heroes[randomIndex], _spawnPoints[i].position, Quaternion.identity);
-                
-                randomHero.InitCoroutineLauncher(_launcher);
-                
+                    Object.Instantiate(_config.Heroes[randomIndex],
+                        t.position,
+                        Quaternion.identity);
+
                 _heroUIFactory = new HeroUIFactory(randomHero, _statsHeroView);
+                _heroUIFactory.Enable();
+                
                 _containerHeroes.Add(randomHero);
             }
         }

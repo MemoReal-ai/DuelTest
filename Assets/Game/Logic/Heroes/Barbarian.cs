@@ -1,6 +1,5 @@
 using Game.Logic.Heroes.Debuff;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Logic.Heroes
 {
@@ -8,10 +7,11 @@ namespace Game.Logic.Heroes
     {
         [SerializeField] private DebuffBushConfig _debuffBushConfig;
 
+
         protected override void Start()
         {
             base.Start();
-            Debuff = new BushDebuff(_debuffBushConfig, Launcher);
+            Debuff = new BushDebuff(_debuffBushConfig);
         }
     }
 }

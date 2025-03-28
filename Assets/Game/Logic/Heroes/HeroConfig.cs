@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Configs.Hero.Heroes
+namespace Game.Logic.Heroes
 {
     [CreateAssetMenu(fileName = "HeroConfig", menuName = "Config/Hero Config")]
     public class HeroConfig : ScriptableObject
@@ -19,7 +19,10 @@ namespace Game.Configs.Hero.Heroes
 
         [field: SerializeField, Min(0)]
         public int Damage { get; private set; } = 1;
-        
+
+        [field: SerializeField,Min(0)]
+        public int WinCount { get; private set; }
+
         public void IncreaseAttackCooldown(float timeToIncrease)
         {
             AttackCooldown += timeToIncrease;
@@ -30,9 +33,19 @@ namespace Game.Configs.Hero.Heroes
             return Damage;
         }
 
+        public void IncreaseWinCount()
+        {
+            WinCount++;
+        }
+
         public void RestoreAttackCooldown(float attackCooldownDefault)
         {
             AttackCooldown = attackCooldownDefault;
+        }
+
+        public void SetWinCount(int value)
+        {
+            WinCount = value;
         }
     }
 }

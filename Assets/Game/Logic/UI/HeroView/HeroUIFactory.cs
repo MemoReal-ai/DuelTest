@@ -14,10 +14,9 @@ namespace Game.Logic.UI.HeroView
         {
             _hero = hero;
             _statsHeroView = statsHeroView;
-            Enable();
         }
 
-        private void Enable()
+        public void Enable()
         {
              var stats = Object.Instantiate(_statsHeroView, _hero.transform);
             _presenter = new Presenter(stats, _hero);

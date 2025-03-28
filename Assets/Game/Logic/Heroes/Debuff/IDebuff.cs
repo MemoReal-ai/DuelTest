@@ -1,4 +1,4 @@
-namespace Game.Logic.Heroes
+namespace Game.Logic.Heroes.Debuff
 {
     public interface IDebuff
     {

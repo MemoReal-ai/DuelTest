@@ -6,35 +6,30 @@ using Zenject;
 
 namespace Game.Logic.Infrastructure.Installer
 {
-    public class BootstrapInstaller : MonoInstaller
+    public class EntryPointInstaller : MonoInstaller
     {
         [SerializeField] private SpawnerConfig _spawnerConfig;
-        [SerializeField] private Transform[] _spawnPoints;
         [SerializeField] private StatsHeroView _statsHeroView;
         [SerializeField] private WinPanelView _winPanelView;
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<Bootstrap>().AsCached();
+            Container.BindInterfacesTo<EntryPoint>().AsSingle();
+            Container.Bind<DataHandler>().FromComponentInHierarchy().AsSingle();
             InstallSpawner();
             InstallUI();
         }
 
         private void InstallSpawner()
-        {  
-            Container.Bind<CoroutineLauncher>().FromComponentInHierarchy().AsSingle();
+        {
             Container.Bind<SpawnerConfig>().FromInstance(_spawnerConfig).AsSingle();
-            Container.Bind<Transform[]>().FromInstance(_spawnPoints).AsSingle();
-            
-            var launcher = Container.Resolve<CoroutineLauncher>();
-            var spawner = new Spawner(_spawnerConfig, _spawnPoints,_statsHeroView,launcher);
-            Container.BindInstance(spawner).AsSingle();
-            spawner.SpawnHeroes();
+            Container.Bind<SpawnPoints>().FromComponentInHierarchy().AsSingle();
         }
 
         private void InstallUI()
         {
             Container.Bind<StatsHeroView>().FromInstance(_statsHeroView).AsSingle();
+            _winPanelView = Container.InstantiatePrefabForComponent<WinPanelView>(_winPanelView);
             Container.Bind<WinPanelView>().FromInstance(_winPanelView).AsSingle();
         }
     }

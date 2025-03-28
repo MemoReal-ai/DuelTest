@@ -1,6 +1,5 @@
 using Game.Logic.Infrastructure;
 using Game.Logic.SpawnerHeroes;
-using UnityEngine;
 
 namespace Game.Logic.UI.WinPanelView
 {
@@ -17,14 +16,11 @@ namespace Game.Logic.UI.WinPanelView
             _spawner = spawner;
             _winPanelView = winPanelView;
             _sceneHandler = sceneHandler;
-            Enable();
         }
 
-        private void Enable()
+        public void Enable()
         {
-            var createPanel = Object.Instantiate(_winPanelView);
-            createPanel.Initialize(_sceneHandler);
-            _presenter = new PanelPresenter(createPanel, _spawner.ContainerHeroes);
+            _presenter = new PanelPresenter(_winPanelView, _spawner.ContainerHeroes,_sceneHandler);
             _presenter.Enable();
         }
 

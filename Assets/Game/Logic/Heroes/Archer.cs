@@ -10,7 +10,7 @@ namespace Game.Logic.Heroes
         protected override void Start()
         {
             base.Start();
-            Debuff = new PoisonDebuff(_debuffPoisonConfig, Launcher);
+            Debuff = new PoisonDebuff(_debuffPoisonConfig);
         }
     }
 }
