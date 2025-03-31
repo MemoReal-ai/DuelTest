@@ -55,7 +55,7 @@ namespace Game.Logic.Heroes
             }
             else
             {
-                _agent.Stop();
+                _agent.isStopped = TargetInRange();
 
                 if (_isAttacking == false)
                 {
