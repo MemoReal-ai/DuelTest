@@ -49,8 +49,9 @@ namespace Game.Logic.Heroes
             {
                 return;
             }
+
             _isRange = TargetInRange();
-         
+
 
             if (!_isRange)
             {
@@ -58,12 +59,11 @@ namespace Game.Logic.Heroes
             }
             else
             {
-                _agent.isStopped =_isRange;
+                _agent.isStopped = _isRange;
 
                 if (_isAttacking == false)
                 {
-                   var _ = Attack();
-                    print(_);
+                    _ = Attack();
                 }
             }
         }
