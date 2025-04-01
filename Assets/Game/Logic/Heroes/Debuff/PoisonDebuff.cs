@@ -19,7 +19,7 @@ namespace Game.Logic.Heroes.Debuff
             if (_isDebuffed == false)
             {
                 _ = Debuff(hero);
-                Debug.Log($"Применен эффект Poison на {hero.name.Replace("(Clone)", string.Empty)}");
+                Debug.Log($"Применен эффект Poison на {hero.HeroConfig.Name}");
             }
         }
 
@@ -34,7 +34,7 @@ namespace Game.Logic.Heroes.Debuff
                 }
 
                 hero.TakeDamage(_config.PoisonDamage);
-                Debug.Log($"Применен тик Poison на {hero.name.Replace("(Clone)", string.Empty)}");
+                Debug.Log($"Применен тик Poison на {hero.HeroConfig.Name}");
                 await UniTask.Delay(TimeSpan.FromSeconds(_config.DurationBetweenTick));
             }
 

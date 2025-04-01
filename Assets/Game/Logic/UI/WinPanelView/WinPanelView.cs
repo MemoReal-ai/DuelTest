@@ -12,7 +12,7 @@ namespace Game.Logic.UI.WinPanelView
 
         public void ShowWinName(string heroName)
         {
-            _text.text = heroName.Replace("(Clone)", string.Empty) + "\n winning";
+            _text.text = heroName + "\n winning";
         }
     }
 }

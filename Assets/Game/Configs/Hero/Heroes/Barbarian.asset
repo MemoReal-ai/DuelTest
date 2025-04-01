@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d915cc60f24fab64e93d631787e0deb5, type: 3}
   m_Name: Barbarian
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Barbarian
   <Speed>k__BackingField: 5
   <AttackCooldown>k__BackingField: 6
   <RangeAttack>k__BackingField: 1

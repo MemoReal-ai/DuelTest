@@ -30,7 +30,7 @@ namespace Game.Logic.Heroes.Debuff
             _isDebuffed = true;
 
             hero.IncreaseAttackCooldown(_config.DurationDebuff);
-            Debug.Log($"Применен эффект Bush на  {hero.name.Replace("(Clone)", string.Empty)}");
+            Debug.Log($"Применен эффект Bush на  {hero.HeroConfig.Name}");
 
             await UniTask.Delay(TimeSpan.FromSeconds(_config.DurationDebuff));
             hero.RestoreAttackCooldown();

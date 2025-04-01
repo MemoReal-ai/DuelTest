@@ -30,7 +30,7 @@ namespace Game.Logic.Heroes.Debuff
             _isDebuffed = true;
 
             hero.DecreaseAttack(_weaklyConfig.PercentStatus);
-            Debug.Log($"Примене эффект Weakly на {hero.name.Replace("(Clone)", string.Empty)}");
+            Debug.Log($"Примене эффект Weakly на {hero.HeroConfig.Name}");
 
             await UniTask.Delay(TimeSpan.FromSeconds(_weaklyConfig.Duration));
             hero.RestoreDamage();

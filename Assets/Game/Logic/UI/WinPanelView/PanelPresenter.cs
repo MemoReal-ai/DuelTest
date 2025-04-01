@@ -41,7 +41,7 @@ namespace Game.Logic.UI.WinPanelView
         private void Show(Hero hero)
         {
             _winPanelView.gameObject.SetActive(true);
-            _winPanelView.ShowWinName(hero.name);
+            _winPanelView.ShowWinName(hero.HeroConfig.Name);
         }
     }
 }

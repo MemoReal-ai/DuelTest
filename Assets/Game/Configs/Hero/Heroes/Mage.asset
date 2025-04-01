@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d915cc60f24fab64e93d631787e0deb5, type: 3}
   m_Name: Mage
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Mage
   <Speed>k__BackingField: 6
   <AttackCooldown>k__BackingField: 6
   <RangeAttack>k__BackingField: 3
   <MaxHealth>k__BackingField: 10
   <Damage>k__BackingField: 2
-  <WinCounter>k__BackingField: 0
+  <WinCount>k__BackingField: 0

@@ -19,6 +19,7 @@ namespace Game.Logic.Heroes
         private WaitForSeconds _waitForSecondsAttackCooldown;
         private bool _isAttacking;
         private float _attackCooldownDefault;
+        private bool _isRange;
 
         protected IDebuff Debuff;
 
@@ -48,20 +49,28 @@ namespace Game.Logic.Heroes
             {
                 return;
             }
+            _isRange = TargetInRange();
+         
 
-            if (!TargetInRange())
+            if (!_isRange)
             {
                 _agent.SetDestination(_target.transform.position);
             }
             else
             {
-                _agent.isStopped = TargetInRange();
+                _agent.isStopped =_isRange;
 
                 if (_isAttacking == false)
                 {
-                    _ = Attack();
+                   var _ = Attack();
+                    print(_);
                 }
             }
+        }
+
+        private void FixedUpdate()
+        {
+            this.transform.LookAt(_target.transform.position);
         }
 
         public void InitTarget(Hero target)
