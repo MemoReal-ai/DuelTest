@@ -70,6 +70,11 @@ namespace Game.Logic.Heroes
 
         private void FixedUpdate()
         {
+            if (_target == null)
+            {
+                return;
+            }
+
             this.transform.LookAt(_target.transform.position);
         }
 
